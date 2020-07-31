@@ -1,0 +1,18 @@
+{
+  "name": "combat",
+  "version": "0.0.1",
+  "description": "EverQuest log parser",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/jmoyers/combat"
+  },
+  "author": "Joshua Moyers",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^9.1.2"
+  }
+}
