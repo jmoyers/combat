@@ -1,18 +1,11 @@
-const { app, BrowserWindow } = require("electron");
+import React from "react";
+import ReactDOM from "react-dom";
 
-function createWindow() {
-  // Create the browser window.
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      nodeIntegration: true,
-    },
-  });
-
-  // and load the index.html of the app.
-  win.loadFile("index.html");
-  win.webContents.openDevTools();
+class HelloMessage extends React.Component {
+  render() {
+    return <div>Hello {this.props.name}</div>;
+  }
 }
 
-app.whenReady().then(createWindow);
+var mountNode = document.getElementById("app");
+ReactDOM.render(<HelloMessage name="Jane" />, mountNode);

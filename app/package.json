@@ -2,7 +2,7 @@
   "name": "combat",
   "version": "0.0.1",
   "description": "EverQuest log parser",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron .",
     "install-wsl": "npm install && npm uninstall electron && export npm_config_platform=win32 && npm install electron && unset npm_config_platform"
@@ -15,6 +15,11 @@
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
-    "electron": "^9.1.2"
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "electron": "^9.1.2",
+    "parcel": "^1.12.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }
