@@ -1,2 +1,7 @@
 [Thu May 28 18:47:41 2020] Kalos slashes orc legionnaire for 2 points of damage.
 [Thu May 28 18:47:55 2020] Zanther tries to pierce orc centurion, but misses!
+[Thu May 28 18:47:26 2020] You hit orc legionnaire for 5 points of physical damage by Elbow Strike.
+[Thu May 28 18:47:27 2020] Orc legionnaire has taken 6 damage from Flame Lick by
+Nekkon.
+[Thu May 28 18:58:24 2020] Jenarie's Healing spell is interrupted.
+[Thu May 28 18:58:22 2020] Jenarie begins casting Healing.

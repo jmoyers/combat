@@ -4,7 +4,8 @@
   "description": "EverQuest log parser",
   "main": "index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "install-wsl": "npm install && npm uninstall electron && export npm_config_platform=win32 && npm install electron && unset npm_config_platform"
   },
   "repository": {
     "type": "git",
@@ -12,7 +13,8 @@
   },
   "author": "Joshua Moyers",
   "license": "MIT",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
     "electron": "^9.1.2"
   }
 }
