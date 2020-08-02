@@ -1,0 +1,29 @@
+{
+  "name": "combat-native",
+  "version": "0.0.1",
+  "description": "C++ Addon for Combat EverQuest Damage Meter",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-gyp rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmoyers/combat.git"
+  },
+  "author": "Joshua Moyers",
+  "license": "MIT",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/jmoyers/combat/issues"
+  },
+  "homepage": "https://github.com/jmoyers/combat#readme",
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "cmake-js": "^6.1.0",
+    "node-addon-api": "^3.0.0"
+  }
+}
