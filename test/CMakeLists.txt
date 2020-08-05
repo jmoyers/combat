@@ -1,10 +1,12 @@
 find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 include_directories("${PROJECT_SOURCE_DIR}/include")
+add_definitions("-D_GLIBCXX_DEBUG")
 
 set(TEST_SOURCES 
   ${PROJECT_SOURCE_DIR}/test/main.cpp
   ${PROJECT_SOURCE_DIR}/test/test_logs.cpp
   ${PROJECT_SOURCE_DIR}/test/test_pool.cpp
+  ${PROJECT_SOURCE_DIR}/test/test_parse.cpp
 )
 set(TEST_LIBS combat_lib)
 
