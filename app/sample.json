@@ -1,0 +1,11 @@
+[
+  { "name": "Morty", "class": "Pet", "fight_id": "test_id", "dps": 900 },
+  {
+    "name": "Bellemorte",
+    "class": "Necromancer",
+    "fight_id": "test_id",
+    "dps": 600
+  },
+  { "name": "Kalos", "class": "Ranger", "fight_id": "test_id", "dps": 405 },
+  { "name": "Daikan", "class": "Monk", "fight_id": "test_id", "dps": 375 }
+]

@@ -1,14 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Meter from "./meter";
 
 class HelloMessage extends React.Component {
   render() {
     return (
       <div>
-        <div class="row">
-          <div class="col s3 grey">Fights</div>
-          <div class="col s9 teal">Details</div>
-        </div>
+        <Meter></Meter>
       </div>
     );
   }

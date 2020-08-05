@@ -9,7 +9,10 @@ include_directories(
 )
 
 add_library(combat_addon SHARED src/main.cpp ${CMAKE_JS_SRC})
-add_library(combat_lib include/logs.hpp)
+add_library(combat_lib 
+  include/logs.hpp
+  include/pool.hpp
+)
 
 set_target_properties(combat_addon PROPERTIES 
   PREFIX ""
@@ -26,6 +29,8 @@ set_target_properties(combat_lib PROPERTIES
   CXX_EXTENSIONS ON
   LINKER_LANGUAGE CXX
 )
+
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 enable_testing()
 

@@ -1,4 +1,5 @@
 #include "logs.hpp"
+#include "pool.hpp"
 #include <iostream>
 #include <napi.h>
 

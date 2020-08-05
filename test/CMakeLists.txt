@@ -1,7 +1,11 @@
 find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 include_directories("${PROJECT_SOURCE_DIR}/include")
 
-set(TEST_SOURCES ${PROJECT_SOURCE_DIR}/test/test_logs.cpp)
+set(TEST_SOURCES 
+  ${PROJECT_SOURCE_DIR}/test/main.cpp
+  ${PROJECT_SOURCE_DIR}/test/test_logs.cpp
+  ${PROJECT_SOURCE_DIR}/test/test_pool.cpp
+)
 set(TEST_LIBS combat_lib)
 
 add_executable(tests ${TEST_SOURCES})
