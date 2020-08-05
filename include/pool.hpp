@@ -13,11 +13,14 @@
 
 // no resizing or restarting thread pool for now. stop on destruct.
 
+#include <atomic>
 #include <condition_variable>
 #include <deque>
 #include <functional>
+#include <iostream>
 #include <memory>
 #include <mutex>
+#include <optional>
 #include <thread>
 #include <vector>
 
@@ -28,6 +31,7 @@ namespace combat {
 template <typename T> class WorkQueue {
 private:
   vector<thread> threads;
+  atomic<bool> exit;
 
   mutex work_mutex;
   condition_variable work_avail;
@@ -37,25 +41,42 @@ private:
   condition_variable output_avail;
   deque<T> output;
 
+  mutex listeners_mutex;
+  vector<function<void(T)>> listeners;
+
 public:
-  WorkQueue() {
+  WorkQueue() : exit(false) {
     int num_threads = thread::hardware_concurrency();
 
     for (int i = 0; i < num_threads; i++) {
       threads.push_back(std::thread([&] {
         while (true) {
           auto task = wait_for_work();
+
+          if (task == nullopt) {
+            return;
+          }
+
           scoped_lock out_lock(output_mutex);
-          output.push_back(task());
+
+          T val = task.value()();
+
+          for (auto l : listeners) {
+            l(val);
+          }
         }
       }));
     }
   }
 
-  function<T()> wait_for_work() {
+  optional<function<T()>> wait_for_work() {
     unique_lock work_lock(work_mutex);
 
-    work_avail.wait(work_lock, [&] { return !work.empty(); });
+    work_avail.wait(work_lock, [&] { return !work.empty() || exit; });
+
+    if (exit) {
+      return nullopt;
+    }
 
     auto task = work.front();
     work.pop_front();
@@ -78,6 +99,21 @@ public:
   }
 
   // subscribe to work output
-  void subscribe(function<void(T)>);
+  void subscribe(function<void(T)> l) {
+    scoped_lock lock(listeners_mutex);
+    listeners.push_back(l);
+  }
+
+  void stop() {
+    exit = true;
+    work_avail.notify_all();
+  }
+
+  ~WorkQueue() {
+    stop();
+
+    for (auto &t : threads)
+      t.join();
+  }
 };
 } // namespace combat
