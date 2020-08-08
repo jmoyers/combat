@@ -18,3 +18,7 @@ set_target_properties(tests PROPERTIES
 )
 target_link_libraries(tests ${TEST_LIBS} ${Boost_LIBRARIES})
 add_test(NAME logs_test COMMAND tests)
+
+add_custom_command(TARGET tests PRE_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/test/fixtures/ $<TARGET_FILE_DIR:tests>/fixtures)

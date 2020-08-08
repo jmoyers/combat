@@ -10,13 +10,13 @@ using namespace std;
 BOOST_AUTO_TEST_SUITE(combat_test_suite)
 
 BOOST_AUTO_TEST_CASE(test_find_files) {
-  auto files = find_files("test/fixtures");
+  auto files = find_files("fixtures");
 
   unordered_set<string> expected{
-      "test/fixtures/test.txt",
-      "test/fixtures/test2.txt",
-      "test/fixtures/eqlog_test.txt",
-      "test/fixtures/eqlog_something_server.txt",
+      "fixtures/test.txt",
+      "fixtures/test2.txt",
+      "fixtures/eqlog_test.txt",
+      "fixtures/eqlog_something_server.txt",
   };
 
   for (auto const &f : files) {
@@ -27,12 +27,12 @@ BOOST_AUTO_TEST_CASE(test_find_files) {
 }
 
 BOOST_AUTO_TEST_CASE(test_filter_files) {
-  auto files = find_files("test/fixtures");
+  auto files = find_files("fixtures");
   filter_logs(files);
 
   unordered_set<string> expected{
-      "test/fixtures/eqlog_test.txt",
-      "test/fixtures/eqlog_something_server.txt",
+      "fixtures/eqlog_test.txt",
+      "fixtures/eqlog_something_server.txt",
   };
 
   int count = 0;
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(test_filter_files) {
 }
 
 BOOST_AUTO_TEST_CASE(test_read_log) {
-  string filename = "test/fixtures/eqlog_something_server.txt";
+  string filename = "fixtures/eqlog_something_server.txt";
   string contents =
       R"([Thu May 28 18:47:41 2020] Kalos slashes orc legionnaire for 2 points of damage.
 [Thu May 28 18:47:55 2020] Zanther tries to pierce orc centurion, but misses!
