@@ -25,6 +25,7 @@ private:
 
   mutex listeners_mutex;
   vector<function<void(T)>> listeners;
+  atomic<int> pending = 0;
 
 public:
   WorkQueue() : exit(false) {
@@ -48,7 +49,9 @@ public:
             l(val);
           }
 
-          if (work.empty())
+          pending--;
+
+          if (work.empty() and pending == 0)
             empty.notify_one();
         }
       }));
@@ -64,6 +67,7 @@ public:
       return nullopt;
     }
 
+    pending++;
     auto task = work.front();
     work.pop_front();
 

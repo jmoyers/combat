@@ -4,3 +4,4 @@
 **/.cache
 **/*.swp
 cmake-build-debug
+.idea

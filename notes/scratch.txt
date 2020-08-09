@@ -1,0 +1,29 @@
+
+
+
+roadmap
+
+- add google test
+- remove boost
+- add benchmarks
+- regexes for other events
+    - spell casts
+    - interrupts
+    - direct damage
+    - misses
+- group events into fights
+- under a fight (or fights), group data...
+    - target
+    - player
+    - damage type, dd, dot, melee (verb)
+- class for managing time series data
+    - damage per second for encounter
+    - filter based on valid groupings
+    - split dps by damage type ->
+        - verb, direct damage -> spells
+- map player to pet via /pet leader or manually
+- api for updating react app
+- live dps chart view based on d3
+    - transparent window
+- avoid reparsing: caching scheme
+- synch to raid -> p2p tcp connection to share log data
