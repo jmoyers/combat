@@ -3,5 +3,6 @@
 **/dist
 **/.cache
 **/*.swp
-cmake-build-debug
+**/cmake-build-debug
+**/cmake-build-release
 .idea

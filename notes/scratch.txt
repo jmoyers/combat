@@ -3,8 +3,8 @@
 
 roadmap
 
-- add google test
-- remove boost
+- [x] add google test
+- [x] remove boost
 - add benchmarks
 - regexes for other events
     - spell casts

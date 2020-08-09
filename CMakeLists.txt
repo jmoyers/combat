@@ -34,4 +34,6 @@ set_target_properties(combat_lib PROPERTIES
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 add_subdirectory(test)
+add_subdirectory(benchmarks)
 add_subdirectory(vendor/googletest)
+add_subdirectory(vendor/benchmark)
