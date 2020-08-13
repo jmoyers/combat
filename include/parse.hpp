@@ -18,30 +18,23 @@ unordered_map<string, int> months{
     {"Jul", 6}, {"Aug", 7}, {"Sep", 8}, {"Oct", 9}, {"Nov", 10}, {"Dev", 11},
 };
 
-class CombatEvent {
+class LogEvent {
+  public:
+    time_t time;
+    string character;
+    string target;
+};
+
+class CombatEvent : public LogEvent {
 public:
-  time_t time;
-
-  string character;
   string verb;
-  string target;
-
   int damage;
 
   CombatEvent(smatch &captures) {
-    // 1 day_of_week
-    // 2 month
-    // 3 day
-    // 4 hour
-    // 5 minute
-    // 6 second
-    // 7 year
-    // 8 character
-    // 9 verb
-    // 10 target
-    // 11 damage
+    // 1 day_of_week // 2 month // 3 day // 4 hour // 5 minute // 6 second 
+    // 7 year // 8 character // 9 verb // 10 target // 11 damage
 
-    struct tm info;
+    struct tm info{};
 
     info.tm_mon = months[captures[2]];
     info.tm_mday = stoi(captures[3]);
@@ -60,6 +53,19 @@ public:
 };
 
 optional<CombatEvent> match_melee(string &line) {
+  static regex pattern(
+      R"regex(\[(\w+) (\w+) (\d+) (\d+):(\d+):(\d+) (\d+)\] (\w+[\w\s]+) (backstabs|bashes|bites|kicks|crushes|pierces|slashes|hits|hit) ([\w\s]+) for (\d+) point[s?] of damage\S)regex");
+
+  smatch captures;
+
+  if (regex_match(line, captures, pattern)) {
+    return optional{CombatEvent(captures)};
+  } else {
+    return nullopt;
+  }
+}
+
+optional<CombatEvent> match_miss(string &line) {
   static regex pattern(
       R"regex(\[(\w+) (\w+) (\d+) (\d+):(\d+):(\d+) (\d+)\] (\w+[\w\s]+) (backstabs|bashes|bites|kicks|crushes|pierces|slashes|hits|hit) ([\w\s]+) for (\d+) point[s?] of damage\S)regex");
 
